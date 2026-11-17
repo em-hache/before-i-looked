@@ -1,6 +1,15 @@
+import { readNight } from '../digest/read-night.js';
 import type { Status } from '../status.js';
 
-export function StatusBoard({ status }: { status: Status }) {
+// Jobs counted once each, by last status; '—' when the night cannot be read.
+function counts(runsDir: string, night: string): string {
+  const n = readNight(runsDir, night);
+  if (n === null) return '—';
+  const c = (s: string) => n.rows.filter((r) => r.lastStatus === s).length;
+  return `ok ${c('ok')} · retry ${c('retry')} · fail ${c('fail')}`;
+}
+
+export function StatusBoard({ status, runsDir }: { status: Status; runsDir: string }) {
   return (
     <>
       <h1>status</h1>
@@ -20,7 +29,9 @@ export function StatusBoard({ status }: { status: Status }) {
       ) : (
         <ul>
           {status.nights.map((n) => (
-            <li>{n}</li>
+            <li>
+              <a href={`/digest/${n}`}>{n}</a> · {counts(runsDir, n)}
+            </li>
           ))}
         </ul>
       )}
