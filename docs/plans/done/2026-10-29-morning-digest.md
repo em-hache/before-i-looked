@@ -87,3 +87,13 @@ Done when: the preview link no longer shows the lane marker.
 - #5 Route tests for page and JSON
 - #6 Preview for review
 - #7 Clean up: remove lane marker, move plan to done
+
+## Issues
+
+- #1 Run log reader and DigestRow types
+- #2 Digest page GET /digest/:night
+- #3 JSON GET /api/digest/:night
+- #4 Board links to each night's digest
+- #5 Route tests for page and JSON
+- #6 Preview for review
+- #7 Clean up: remove lane marker, move plan to done
